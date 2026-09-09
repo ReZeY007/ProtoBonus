@@ -1,5 +1,6 @@
 import Logo from "./Logo";
 import "./Header.css";
+import Popup from "./Popup";
 
 function Header() {
   return (
@@ -9,7 +10,19 @@ function Header() {
       </div>
       <div className="header__right">
         <button>Магазин</button>
-        <button>Выход</button>
+        <Popup>
+          <ul>
+            <li>
+              <button>Профиль</button>
+            </li>
+            <li>
+              <button>Покупки</button>
+            </li>
+            <li>
+              <button>Выход</button>
+            </li>
+          </ul>
+        </Popup>
         <button>Вход</button>
       </div>
     </header>

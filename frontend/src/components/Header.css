@@ -7,3 +7,8 @@
     margin: auto;
     background-color: hsl(200, 70%, 50%);
 }
+
+.header__right,
+.header__left {
+    display: flex;
+}
