@@ -2,6 +2,7 @@ import { type RouteObject } from "react-router";
 import Landing from "../pages/landing/Landing";
 import Auth from "./auth";
 import Layout from "../pages/Layout";
+import ShopRoutes from "./shop";
 import { rootLoader } from "../pages/root/loader";
 
 const Routes = [
@@ -14,6 +15,7 @@ const Routes = [
         Component: Landing,
       },
       ...Auth,
+      ShopRoutes,
     ],
   },
 ] as const satisfies RouteObject[];

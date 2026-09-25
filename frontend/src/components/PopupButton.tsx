@@ -4,9 +4,10 @@ import "./PopupButton.css";
 interface PopupProps {
   children: React.ReactElement;
   buttonContent: string | React.ReactElement;
+  className?: string;
 }
 
-function Popup({ children, buttonContent }: PopupProps) {
+function Popup({ children, buttonContent, className }: PopupProps) {
   const [isOpen, setIsOpen] = useState(false);
   const handleButtonClick = () => {
     setIsOpen(!isOpen);
@@ -14,8 +15,13 @@ function Popup({ children, buttonContent }: PopupProps) {
 
   return (
     <>
-      <button onClick={handleButtonClick}>{buttonContent}</button>
-      <div className={`popup ${isOpen && "popup--open"}`}>{children}</div>
+      <button
+        className={className + " popup-button"}
+        onClick={handleButtonClick}
+      >
+        {buttonContent}
+        <div className={`popup ${isOpen && "popup--open"}`}>{children}</div>
+      </button>
     </>
   );
 }

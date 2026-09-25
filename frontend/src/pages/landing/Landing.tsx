@@ -10,9 +10,9 @@ function Landing() {
       <div className="popular-products">
         <h2>Популярное</h2>
         <div className="popular-products__content">
-          <Product />
-          <Product />
-          <Product />
+          <Product name="Товар" price={1000} image="f" />
+          <Product name="Товар" price={1000} image="f" />
+          <Product name="Товар" price={1000} image="f" />
         </div>
       </div>
     </div>

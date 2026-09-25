@@ -21,29 +21,46 @@ function Header() {
   return (
     <header className="header">
       <div className="header__left">
-        <Logo />
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <Logo />
+        </Link>
       </div>
-      <div className="header__right">
+      <nav className="nav-bar">
         {user && (
           <>
-            <a href="/shop">Магазин</a>
-            <PopupButton buttonContent={user?.name + " " + user?.surname[0]}>
-              <ul>
+            <Link className="nav-bar__button" to="/shop">
+              Магазин
+            </Link>
+            <PopupButton
+              className="nav-bar__button"
+              buttonContent={user?.name + " " + user?.surname[0]}
+            >
+              <ul className="nav-bar__user">
                 <li>
-                  <Link to="/profile">Профиль</Link>
+                  <Link className="nav-bar__user__button" to="/profile">
+                    Профиль
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/purchases">Покупки</Link>
+                  <Link className="nav-bar__user__button" to="/purchases">
+                    Покупки
+                  </Link>
                 </li>
                 <li>
-                  <a onClick={handleLogout}>Выход</a>
+                  <a className="nav-bar__user__button" onClick={handleLogout}>
+                    Выход
+                  </a>
                 </li>
               </ul>
             </PopupButton>
           </>
         )}
-        {!user && <Link to="/login">Вход</Link>}
-      </div>
+        {!user && (
+          <Link className="nav-bar__button" to="/login">
+            Вход
+          </Link>
+        )}
+      </nav>
     </header>
   );
 }

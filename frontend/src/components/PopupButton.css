@@ -1,5 +1,18 @@
+.popup-button {
+    display: inline-block !important;
+    position: relative;
+}
+
 .popup {
     display: none;
+    position: absolute;
+    padding: 12px;
+    transform: translate(-50%, 12px);
+    left: 50%;
+    background: var(--bg);
+    border: solid 1px hsl(0, 0%, 80%);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
 }
 
 .popup--open {
