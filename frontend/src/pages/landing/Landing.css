@@ -1,0 +1,4 @@
+.popular-products__content {
+    display: flex;
+    gap: 8px;
+}

@@ -3,12 +3,17 @@
     justify-content: space-between;
     align-items: center;
     max-width: 1400px;
-    height: 70px;
-    margin: auto;
-    background-color: hsl(200, 70%, 50%);
+    width: 100%;
+    min-height: 60px;
+    margin: 0 auto;
+    background-color: var(--primary);
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
 }
 
 .header__right,
 .header__left {
     display: flex;
+    align-items: center;
+    margin: 0 12px;
 }

@@ -1,14 +1,14 @@
-import type { ActionFunctionArgs } from "react-router";
 import axios, { AxiosError } from "axios";
-import { login, type LoginData } from "../../api/auth";
-import type { User } from "../../store/authStore";
+import { redirect, type ActionFunctionArgs } from "react-router";
+import { login, logout, type LoginData } from "../../api/auth";
+import { useAuthStore } from "../../store/authStore";
 
 export async function loginAction({ request }: ActionFunctionArgs) {
   const data: LoginData = await request.json();
 
   try {
-    const response: User = await login(data);
-    return { success: true, user: response };
+    await login(data);
+    return redirect("/");
   } catch (error) {
     if (axios.isAxiosError(error)) {
       const axiosError = error as AxiosError;
@@ -18,6 +18,19 @@ export async function loginAction({ request }: ActionFunctionArgs) {
           status: axiosError.response.status,
           data: axiosError.response.data,
         };
+      return {
+        success: false,
+      };
     }
+  }
+}
+
+export default async function logoutAction() {
+  try {
+    await logout();
+    useAuthStore.getState().setUser(null);
+    return redirect("/");
+  } catch (error) {
+    return redirect("/error/logout");
   }
 }

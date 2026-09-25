@@ -1,8 +1,10 @@
+import "./Logo.css";
+
 function Logo({ size = 1 }: LogoProps) {
   return (
-    <div>
+    <div className="logo">
       <img style={{ height: size, width: size }} />
-      <h1>
+      <h1 style={{ color: "var(--text-light)" }}>
         Прото<span style={{ color: "orange" }}>Бонус</span>
       </h1>
     </div>

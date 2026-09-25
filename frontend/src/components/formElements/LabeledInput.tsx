@@ -1,3 +1,5 @@
+import "./LabeledInput.css";
+
 type widthUnit = "%" | "px" | "em" | "vh";
 interface LabeledInputProps {
   label: string;
@@ -7,7 +9,7 @@ interface LabeledInputProps {
   width: `${number}${widthUnit}`;
   type?: "password" | "text";
   onChange?: React.ChangeEventHandler | null;
-  error?: boolean;
+  danger?: boolean;
 }
 
 function LabeledInput({
@@ -18,13 +20,13 @@ function LabeledInput({
   value = "",
   type = "text",
   onChange = null,
-  error = false,
+  danger = false,
 }: LabeledInputProps) {
   return (
-    <div style={{ width: width }}>
+    <div className="labeled-input" style={{ width: width }}>
       <label htmlFor={name + "Input"}>{label}</label>
       <input
-        className={error ? "danger" : ""}
+        className={danger ? "danger" : ""}
         id={name + "Input"}
         placeholder={placeholder}
         value={value}

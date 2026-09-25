@@ -10,3 +10,8 @@ export async function login(loginData: LoginData) {
   const response: AxiosResponse = await unauthourizedClient.get("/login");
   return response.data;
 }
+
+export async function logout() {
+  const response: AxiosResponse = await unauthourizedClient.post("/logout");
+  return response.data;
+}

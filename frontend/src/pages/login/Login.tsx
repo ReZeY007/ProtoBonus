@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
-import { useActionData, useNavigate, useSubmit } from "react-router";
+import { useActionData, useSubmit } from "react-router";
 import LabeledInput from "../../components/formElements/LabeledInput";
 import { type LoginData } from "../../api/auth";
 import type { loginAction } from "./action";
-import { useAuthStore } from "../../store/authStore";
+import "./Login.css";
 
 function Login() {
   const actionData = useActionData<typeof loginAction>();
   const submit = useSubmit();
-  const navigate = useNavigate();
-  const user = useAuthStore();
 
   const [hasError, setHasError] = useState(false);
   const [loginData, setLoginData] = useState<LoginData>({
@@ -34,36 +32,41 @@ function Login() {
   };
 
   useEffect(() => {
-    if (actionData?.user) {
-      user.setUser(actionData.user);
-      navigate("/");
-    } else if (!actionData?.success) {
+    if (actionData && !actionData?.success) {
       setHasError(true);
     }
-  }, [actionData, navigate]);
+  }, [actionData]);
 
   return (
-    <div>
-      <LabeledInput
-        name="login"
-        label="Логин"
-        placeholder="Логин"
-        width={"150px"}
-        value={loginData.login}
-        onChange={handleInputChange}
-        error={hasError}
-      />
-      <LabeledInput
-        error={hasError}
-        name="password"
-        type="password"
-        label="Пароль"
-        placeholder="Пароль"
-        width={"150px"}
-        value={loginData.password}
-        onChange={handleInputChange}
-      />
-      <button onClick={handleSubmitClick}>Войти</button>
+    <div className="login-page">
+      <div className="panel login-form">
+        <h1 className="login-form__title">Вход</h1>
+        <LabeledInput
+          name="login"
+          label="Логин"
+          placeholder="Логин"
+          width={"100%"}
+          value={loginData.login}
+          onChange={handleInputChange}
+          danger={hasError}
+        />
+        <LabeledInput
+          name="password"
+          type="password"
+          label="Пароль"
+          placeholder="Пароль"
+          width={"100%"}
+          value={loginData.password}
+          onChange={handleInputChange}
+          danger={hasError}
+        />
+        <button
+          className="accent login-form__confirm-button"
+          onClick={handleSubmitClick}
+        >
+          Войти
+        </button>
+      </div>
     </div>
   );
 }

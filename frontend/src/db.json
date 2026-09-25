@@ -12,5 +12,11 @@
     "name": "Rezey",
     "surname": "R",
     "balance": 1
+  },
+  "current-user": {
+    "id": 1,
+    "name": "Rezey",
+    "surname": "R",
+    "balance": 1
   }
 }

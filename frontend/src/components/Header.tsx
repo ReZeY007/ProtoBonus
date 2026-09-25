@@ -1,10 +1,22 @@
+import { useSubmit, Link } from "react-router";
 import Logo from "./Logo";
-import "./Header.css";
 import PopupButton from "./PopupButton";
 import { useAuthStore } from "../store/authStore";
+import "./Header.css";
 
 function Header() {
   const user = useAuthStore((s) => s.user);
+  const submit = useSubmit();
+
+  const handleLogout = () => {
+    submit(
+      {},
+      {
+        action: "/logout",
+        method: "POST",
+      },
+    );
+  };
 
   return (
     <header className="header">
@@ -18,19 +30,19 @@ function Header() {
             <PopupButton buttonContent={user?.name + " " + user?.surname[0]}>
               <ul>
                 <li>
-                  <a href="/profile">Профиль</a>
+                  <Link to="/profile">Профиль</Link>
                 </li>
                 <li>
-                  <a href="purchases">Покупки</a>
+                  <Link to="/purchases">Покупки</Link>
                 </li>
                 <li>
-                  <button>Выход</button>
+                  <a onClick={handleLogout}>Выход</a>
                 </li>
               </ul>
             </PopupButton>
           </>
         )}
-        {!user && <a href="/login">Вход</a>}
+        {!user && <Link to="/login">Вход</Link>}
       </div>
     </header>
   );

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import "./PopupButton.css";
 
 interface PopupProps {
   children: React.ReactElement;
@@ -6,10 +7,15 @@ interface PopupProps {
 }
 
 function Popup({ children, buttonContent }: PopupProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const handleButtonClick = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <>
-      <button>{buttonContent}</button>
-      <div>{children}</div>
+      <button onClick={handleButtonClick}>{buttonContent}</button>
+      <div className={`popup ${isOpen && "popup--open"}`}>{children}</div>
     </>
   );
 }
